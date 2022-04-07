@@ -1,9 +1,13 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const BoatForm = (props) => {
   
+let navigate = useNavigate()
+
   const handleSubmit = (e) => {
     props.addBoat(e)
+    navigate('/listings')
 
   }
 

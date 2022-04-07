@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const BoatDetails = (props) => {
 
   const [selectedBoat, setBoat] = useState('')
 
+  let {id} = useParams()
+
   useEffect(() => {
-    
-  }, [])
+    let selectedBoat = props.boats.find(
+      (boat) => boat.id === parseInt(id)
+    )
+    setBoat(selectedBoat)
+  }, [props.boat, id])
 
   return selectedBoat ? (
     <div className="detail">
@@ -22,6 +29,7 @@ const BoatDetails = (props) => {
           <h3>Boat ID: {selectedBoat.id}</h3>
         </div>
         <p>{selectedBoat.description}</p>
+        <Link to='/listings'><button>Back</button></Link>
       </div>
     </div>
   ) : null;
